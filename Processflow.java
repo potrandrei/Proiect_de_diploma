@@ -18,14 +18,13 @@ public class Processflow
         String line = reader.readLine();               // read the file from begining to end.
 
         while (line != null){
-            text = text + line;
+            text = text +" " + line;
             line = reader.readLine();
         }
 
 // Write the data stored in the buffer.
         PrintWriter output = new PrintWriter("D:\\Programare\\Programe\\IntelliJ\\Proiect de Diploma\\src\\main\\Log\\ProcesFlow.txt");
-        output.println(text);
-
+        output.print(text);
 
 // Initiate the request of the values from the barcode.
         String barcodescanner;
@@ -33,10 +32,10 @@ public class Processflow
         Scanner barcode = new Scanner(System.in);
         System.out.println("Please scan the bar code ... ");
         barcodescanner = barcode.next();
-        output.print(barcodescanner);
+        output.print(" " + barcodescanner);
 
         output.close();
-
+        System.out.println("The file was updated with the new values");
 
 
     }
