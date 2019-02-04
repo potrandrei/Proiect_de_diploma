@@ -20,7 +20,8 @@ public class Processflow
     public static void main( String[] args ) throws Exception
     {
 //Read the electrical values from the Mltimeter file.
-            FileReader fileReader = new FileReader("D:\\Programare\\Programe\\IntelliJ\\Proiect de Diploma\\src\\main\\Log\\Valori electrice.txt");
+
+        FileReader fileReader = new FileReader("D:\\Programare\\Programe\\IntelliJ\\Proiect de Diploma\\src\\main\\Log\\Valori electrice.txt");
             BufferedReader reader = new BufferedReader(fileReader);
 
             String text = "";
@@ -30,7 +31,6 @@ public class Processflow
                 text = text + " " + line;
                 line = reader.readLine();
             }
-
 // Write the data stored in the Procesflow.txt.
             PrintWriter output = new PrintWriter("D:\\Programare\\Programe\\IntelliJ\\Proiect de Diploma\\src\\main\\Log\\ProcesFlow.txt");
             output.print(text);
@@ -57,13 +57,16 @@ public class Processflow
         Label l = new Label(0,0,"data 1");
 
         mysheet.addCell(new Label(0, 0, "Numar intern"));
+        mysheet.addCell(new Label(0, 1, barcodescanner));
+
         mysheet.addCell(new Label(1, 0, "Rezistenta masurata"));
+        mysheet.addCell(new Label(1, 1, "Rezistenta"));
         mysheet.addCell(new Label(2, 0, "Data masuratorii"));
 
 
         myexcel.write();
         myexcel.close();
         TimeUnit.SECONDS.sleep(1);
-        System.out.println("A fost creat fisirul excel cu datele masuratorilor.");
+        System.out.println("A fost creat fisierul excel cu datele masuratorilor.");
     }
 }
