@@ -1,25 +1,23 @@
 package Diploma;
 
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.awt.*;
 import java.util.Scanner;
-
-import jxl.Workbook;
-import jxl.write.DateTime;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
 
 public class Processflow
 {
     public static void main( String[] args ) throws Exception
     {
-//Read the electrical values from the Mltimeter file.
+//Read the electrical values from the Multimeter file.
 
         FileReader fileReader = new FileReader("D:\\Programare\\Programe\\IntelliJ\\Proiect de Diploma\\src\\main\\Log\\Valori electrice.txt");
             BufferedReader reader = new BufferedReader(fileReader);
@@ -48,25 +46,22 @@ public class Processflow
             output.close();
         System.out.println("3. Fisierul a fost actualizat ...");
 
-// Create a excel file.
+//Create a excel file.
 
         File f = new File("D:\\Programare\\Programe\\IntelliJ\\Proiect de Diploma\\RezultatValori.xls");
 
-            WritableWorkbook myexcel = Workbook.createWorkbook(f);
-            WritableSheet mysheet = myexcel.createSheet("mysheet",0);
+        WritableWorkbook excel = Workbook.createWorkbook(f);
+        WritableSheet sheet = excel.createSheet("sheet1",0);
+
         Label l = new Label(0,0,"data 1");
+            sheet.addCell((new Label(0,0,"Numar intern cablu")));
+            sheet.addCell((new Label(1,0,"Valoare electrica masurata")));
 
-        mysheet.addCell(new Label(0, 0, "Numar intern"));
-        mysheet.addCell(new Label(0, 1, barcodescanner));
+            sheet.addCell((new Label(0,1,barcodescanner)));
 
-        mysheet.addCell(new Label(1, 0, "Rezistenta masurata"));
-        mysheet.addCell(new Label(1, 1, "Rezistenta"));
-        mysheet.addCell(new Label(2, 0, "Data masuratorii"));
+            excel.write();
+            excel.close();
 
 
-        myexcel.write();
-        myexcel.close();
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("A fost creat fisierul excel cu datele masuratorilor.");
     }
 }
